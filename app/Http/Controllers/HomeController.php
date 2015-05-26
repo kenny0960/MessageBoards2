@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Http\Model\MessageModel;
+
 class HomeController extends Controller {
 
 	/*
@@ -20,7 +22,10 @@ class HomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth');
+		/**
+		 * guests can see the page and make a comment without login
+		 */
+		//$this->middleware('auth');
 	}
 
 	/**
@@ -30,7 +35,7 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		return view('home')->withMessages(MessageModel::getAllMessages());
 	}
 
 }

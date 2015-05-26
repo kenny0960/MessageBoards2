@@ -11,9 +11,14 @@
 |
 */
 
+Route::get('/', 'HomeController@index');
+Route::get('messages/{id}', 'Admin\MessagesController@show');
+Route::post('comment/store', 'CommentsController@store');
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
 	Route::get('/', 'AdminHomeController@index');
 	Route::resource('messages', 'MessagesController');
+	Route::resource('comments', 'CommentsController');
 });
 
 Route::controllers([

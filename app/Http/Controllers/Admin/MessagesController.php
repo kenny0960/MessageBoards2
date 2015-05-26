@@ -60,7 +60,7 @@ class MessagesController extends Controller
 	 */
 	public function show($id)
 	{
-		//
+		return view('messages.show')->withMessage(MessageModel::findMessage($id))->withComments(CommentModel::findCommentsByMessageId($id));
 	}
 
 	/**
